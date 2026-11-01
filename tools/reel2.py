@@ -144,6 +144,13 @@ def frame(fi):
     span = (YHI - YLO) * 0.42
     ax.set_xlim(x0 + (zx0 - x0) * z, x1 + (zx1 - x1) * z)
     ax.set_ylim(YLO + (ev["y"] - span / 2 - YLO) * z, YHI + (ev["y"] + span / 2 - YHI) * z)
+    for zn in cfg.get("zones", []):   # optional FVG / OB boxes: y0, y1, from, show_at, label, color
+        a = ease((nv - zn["show_at"]) / 1.5)
+        if a <= 0: continue
+        ax.add_patch(Rectangle((zn["from"] - 0.4, zn["y0"]), N + 9 - zn["from"], zn["y1"] - zn["y0"],
+                               fc=COL[zn["color"]], ec=COL[zn["color"]], lw=2, alpha=0.18 * a, zorder=1))
+        ax.text(N + 8, (zn["y0"] + zn["y1"]) / 2, zn["label"] + " ", color=COL[zn["color"]], fontsize=22,
+                fontweight="heavy", ha="right", va="center", alpha=a, zorder=6)
     candles(ax, nv)
     for lv in cfg["levels"]:
         a = ease((nv - lv["show_at"]) / 2)
@@ -161,7 +168,7 @@ def frame(fi):
     if last >= 0:
         k = nv - int(nv) if nv < N else 1
         px = c[last] if k == 0 or nv >= N else o[last] + (c[last] - o[last]) * ease(k)
-        if t >= T2 - 0.2 and t < T2 + 0.8: px = l[E2["i"]]  # show the wick extreme at the break
+        if t >= T2 - 0.2 and t < T2 + 0.8: px = (h if E2.get("px") == "h" else l)[E2["i"]]  # wick extreme at event 2
         colp = DN if px < o[0] else UP
         fig.text(0.93, 0.905, FMT.format(px), color=colp, fontsize=46, fontweight="heavy", ha="right", va="center")
     fig.text(0.07, 0.905, cfg["kicker"], color=GOLD, fontsize=30, fontweight="bold", va="center")
