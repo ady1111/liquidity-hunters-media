@@ -25,3 +25,8 @@ TikTok captions: lead with a curiosity/trap hook line, end with a two-choice com
 - Every zone must be real: bullish FVG = low[i] > high[i-2] (bearish: high[i] < low[i-2]), unfilled since; OB = last opposite-colour candle before the impulse that broke structure. Entry inside the FVG/OB, SL beyond the OB / structure low or high, TP1/TP2 at real liquidity (old highs/lows, opposing unfilled FVG). Minimum 1:2 to TP1. No valid setup → no signal for that instrument.
 - Log every signal in `signals/log.csv`; later runs update status (open / tp1 / tp2 / sl / expired after 48h untriggered) from real candles. Losses are reported as honestly as wins.
 - TikTok photo posts must be JPEG (PNG is rejected).
+
+## Mindset reels (psychology / discipline / consistency / motivation)
+- **`mindset_reel.py preview|render <cfg.json> <out_dir>`** – ~13.6s text reel: hook visible on frame 0, 4 lines pop in (bullets "x" = red mistakes, "v" = green arrows), big punch line with flash, CTA "Follow for daily signals + mindset". Faint drifting candles in the background. Writes `<out_dir>/hits.txt` for beat2: `beat2.py out.wav --hook 2.2 --hits $(cat out/hits.txt) --bpm 105-125`.
+- Example cfg: `tools/examples/2026-11-01-mindset-cfg.json`. All text must be original: never copy quotes from books, films or famous traders, and never promise income or "financial freedom".
+- Topic pool: discipline, revenge trading, overtrading, FOMO, patience (no setup = no trade), journaling, risk per trade, accepting losses, consistency over home runs, process over outcome, routine, emotional control after a win streak, handling a drawdown, staying in the game.
