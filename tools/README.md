@@ -18,4 +18,10 @@ Mux v1: `ffmpeg -f concat -safe 0 -i list.txt -i beat.wav -map 0:v -map 1:a -c:v
 
 Files go in `posts/YYYY-MM-DD-*.jpg` and `videos/YYYY-MM-DD-*.mp4`; public URL: `https://raw.githubusercontent.com/ady1111/liquidity-hunters-media/main/<path>`.
 
-TikTok captions: lead with a curiosity/trap hook line, end with a two-choice comment question ("Bounce or lower? Comment 👇"). Still no signals or promises.
+TikTok captions: lead with a curiosity/trap hook line, end with a two-choice comment question ("Bounce or lower? Comment 👇"). Signal posts give entry/SL/TP but never promise profit.
+
+## Signals
+- **`signal_reel.py preview|render <cfg.json> <out_dir>`** – 15s signal reel: hook (side + R:R) → chart build with the liquidity event → 1H/4H order block + FVG zones → entry/SL/TP levels → gold "REACTS?" reaction points → summary card. Example cfg: `tools/examples/2026-11-01-btc-signal-cfg.json`. Beat: `beat2.py out.wav --hook 2.0 --hits 7.0,8.9,11.5 --seed N --bpm 124-140 --key am|dm|em`, then mux as v2.
+- Every zone must be real: bullish FVG = low[i] > high[i-2] (bearish: high[i] < low[i-2]), unfilled since; OB = last opposite-colour candle before the impulse that broke structure. Entry inside the FVG/OB, SL beyond the OB / structure low or high, TP1/TP2 at real liquidity (old highs/lows, opposing unfilled FVG). Minimum 1:2 to TP1. No valid setup → no signal for that instrument.
+- Log every signal in `signals/log.csv`; later runs update status (open / tp1 / tp2 / sl / expired after 48h untriggered) from real candles. Losses are reported as honestly as wins.
+- TikTok photo posts must be JPEG (PNG is rejected).

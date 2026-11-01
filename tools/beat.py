@@ -1,8 +1,11 @@
 import numpy as np, wave, sys
-SR = 44100; DUR = 16.0; BPM = 140
+import argparse
+ap=argparse.ArgumentParser(); ap.add_argument("out"); ap.add_argument("--dur",type=float,default=16.0); ap.add_argument("--hit",type=float,default=7.7); ap.add_argument("--intro",type=float,default=2.5); ap.add_argument("--bpm",type=float,default=140); ap.add_argument("--seed",type=int,default=7); ap.add_argument("--key",type=int,default=0)
+ARGS=ap.parse_args()
+SR = 44100; DUR = ARGS.dur; BPM = ARGS.bpm
 beat = 60 / BPM; n = int(SR * DUR)
 mix = np.zeros((n, 2))
-rng = np.random.default_rng(7)
+rng = np.random.default_rng(ARGS.seed)
 t_all = np.arange(n) / SR
 
 def add(sig, at, gain=1.0, pan=0.0):
@@ -62,30 +65,31 @@ chords = [(220, 261.63, 329.63), (174.61, 220, 261.63), (261.63, 329.63, 392), (
 roots = [A, F, C, G]
 bar = 4 * beat
 nbars = int(np.ceil(DUR / bar))
-SWEEP = 7.7  # sweep moment in video
+SWEEP = ARGS.hit  # key moment in video
+KS = 2 ** (ARGS.key / 12); chords = [tuple(f * KS for f in ch) for ch in chords]; roots = [r * KS for r in roots]
 
 for b in range(nbars):
     t0 = b * bar
     add(pad(chords[b % 4], bar), t0, 0.11)
     for k, at in enumerate((0, 1.5, 2.75)):
         tt = t0 + at * beat
-        if tt < 2.5: continue  # intro: no drums under hook
+        if tt < ARGS.intro: continue  # intro: no drums under hook
         if abs(tt - SWEEP) < 0.6: continue
         add(kick(), tt, 0.9)
         add(eight08(roots[b % 4], 1.4 * beat), tt, 0.55)
     for at in (1, 3):
         tt = t0 + at * beat
-        if tt >= 2.5 and abs(tt - SWEEP) > 0.4: add(clap(), tt, 0.5, pan=0.1)
+        if tt >= ARGS.intro and abs(tt - SWEEP) > 0.4: add(clap(), tt, 0.5, pan=0.1)
     for s16 in range(16):
         tt = t0 + s16 * beat / 4
-        if tt < 2.5: continue
+        if tt < ARGS.intro: continue
         roll = (b % 2 == 1 and s16 >= 13)
         if s16 % 2 == 0 or roll:
             add(hat(), tt, 0.18 if s16 % 4 else 0.25, pan=-0.3)
             if roll: add(hat(), tt + beat / 8, 0.14, pan=-0.3)
 
-add(riser(1.4), 2.5 - 1.4, 0.18)        # into the drop after hook
-add(impact(), 2.5, 0.5)
+add(riser(1.4), ARGS.intro - 1.4, 0.18)        # into the drop after hook
+add(impact(), ARGS.intro, 0.5)
 add(riser(1.6), SWEEP - 1.6, 0.22)       # build into sweep
 add(impact(), SWEEP, 0.9)
 
@@ -93,6 +97,6 @@ fade = np.minimum(1, (DUR - t_all) / 1.5)[:, None]
 mix *= fade
 mix /= np.max(np.abs(mix)) / 0.89
 pcm = (mix * 32767).astype(np.int16)
-with wave.open(sys.argv[1], "wb") as w:
+with wave.open(ARGS.out, "wb") as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(pcm.tobytes())
 print("ok")

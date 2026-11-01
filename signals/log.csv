@@ -1,0 +1,3 @@
+date,symbol,tf,side,entry,sl,tp1,tp2,zone,posted_pkt,status,result_r,notes
+2026-11-01,BTCUSDT,1H,LONG,77630,77350,78240,78800,1H bullish OB 77538-77682 + FVG 77596-77663,13:15,open,,
+2026-11-01,ETHUSDT,1H,LONG,2259,2243,2295,2335,1H bullish OB 2253-2256 + FVG 2257-2262,17:30,open,,
