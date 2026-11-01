@@ -76,6 +76,15 @@ def words(x, y, text, size, a, ha="left", base=FG, weight="heavy", dy=0.0):
             fig.text(cx, yy, p, color=col, fontsize=size, fontweight=weight, alpha=a, va="center")
             cx += w_
 
+def fit(text, size, maxw=0.86, weight="heavy"):
+    """shrink font size until the widest line fits maxw of the frame width"""
+    r = fig.canvas.get_renderer()
+    for ln in text.split("\n"):
+        tt = fig.text(0, 0, ln, fontsize=size, fontweight=weight)
+        w = tt.get_window_extent(renderer=r).width / W; tt.remove()
+        if w > maxw: size = size * maxw / w
+    return size
+
 def chrome(t):
     fig.text(0.07, 0.03, "LIQUIDITY HUNTERS", color=FG, fontsize=26, fontweight="heavy")
     fig.text(0.93, 0.03, "Mindset", color=MUTED, fontsize=19, ha="right")
@@ -93,7 +102,7 @@ def frame(i):
         if t >= T_HOOK:
             k = ease((t - T_HOOK) / 0.35)
             hook_y = 0.60 + (0.82 - 0.60) * k; size = 70 + (54 - 70) * k
-        words(0.07, hook_y, C["hook"], size, 1)
+        words(0.07, hook_y, C["hook"], fit(C["hook"], size), 1)
         y = 0.62
         for j, (ln, tl) in enumerate(zip(C["lines"], T_LINES)):
             if t < tl + 0.15: break
@@ -101,12 +110,12 @@ def frame(i):
             slide = (1 - a) * 0.03
             fig.text(0.07 - slide, y, "×" if C.get("bullets", "x") == "x" else "→", color=DN if C.get("bullets", "x") == "x" else UP,
                      fontsize=40, fontweight="bold", alpha=a, va="center")
-            words(0.15 - slide, y, ln, 42, a, weight="bold")
+            words(0.15 - slide, y, ln, fit(ln, 42, 0.80, "bold"), a, weight="bold")
             y -= 0.075 * (1 + ln.count("\n"))
     elif t < T_CTA:
         a = ease((t - T_PUNCH) / 0.3)
         scale = 1 + 0.25 * max(0, 1 - (t - T_PUNCH) / 0.25)
-        words(0.5, 0.58, C["punch"], 84 * scale, a, ha="center")
+        words(0.5, 0.58, C["punch"], fit(C["punch"], 84) * scale, a, ha="center")
         if t - T_PUNCH < 0.2:
             fig.patches.append(Rectangle((0, 0), 1, 1, transform=fig.transFigure, color=GOLD, alpha=0.15 * (1 - (t - T_PUNCH) / 0.2)))
     else:
