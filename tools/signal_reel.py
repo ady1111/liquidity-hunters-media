@@ -8,6 +8,7 @@ cfg: {"label":"BTCUSDT","tf":"1H","side":"LONG"|"SHORT","dec":0,
                {"kind":"FVG","label":"1H Bullish FVG","x0":51,"lo":77596,"hi":77663}],
       "zone_text":"1H Bullish OB + FVG",
       "reacts":[{"lo":78241,"hi":78418,"text":"1H Bear FVG"},{"price":78804,"text":"Buy-side liquidity"}],  # where price may react
+      "event_dx":-16,"event_dy":-0.07,  # optional: event label offset (bars, fraction of y-range)
       "skip":0,  # drop this many oldest bars (indices in cfg are BEFORE skipping)
       "why":["Swept the 76.3K lows","1H order block + FVG","Long from the FVG"],
       "invalid":"1H close below 77,100"}
@@ -89,7 +90,7 @@ def chart(n_vis, lv, shake=0, za=0, ra=0):
     ev = C.get("event_bar")
     if ev is not None and n_vis > ev + 1:
         a = ease((n_vis - ev - 1) / 3)
-        ax.annotate(C["event_text"], xy=(ev, C["event_price"]), xytext=(max(ev - 16, 0), C["event_price"] - (YL[1]-YL[0]) * 0.07),
+        ax.annotate(C["event_text"], xy=(ev, C["event_price"]), xytext=(max(ev + C.get("event_dx", -16), 0), C["event_price"] + (YL[1]-YL[0]) * C.get("event_dy", -0.07)),
                     color=GOLD, fontsize=21, fontweight="bold", alpha=a,
                     arrowprops=dict(arrowstyle="->", color=GOLD, lw=2.5, alpha=a), zorder=7)
     if za > 0:

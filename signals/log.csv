@@ -1,4 +1,5 @@
 date,symbol,tf,side,entry,sl,tp1,tp2,zone,posted_pkt,status,result_r,notes
 2026-11-01,BTCUSDT,1H,LONG,77630,77350,78240,78800,1H bullish OB 77538-77682 + FVG 77596-77663,13:15,tp2,4.18,Entry filled 11-01 19:00 UTC (low 77622.81); TP1 11-02 00:00 UTC; TP2 11-02 03:00 UTC (high 78878); SL never touched
 2026-11-01,ETHUSDT,1H,LONG,2259,2243,2295,2335,1H bullish OB 2253-2256 + FVG 2257-2262,17:30,tp1,2.25,Entry filled by 11-01 19:00 UTC (low 2254.65); TP1 11-02 02:00 UTC (high 2298.76); TP2 2335 not reached yet (high 2317.84 as of 11-02 04:00 UTC); SL never touched
-2026-11-02,USOIL,1H,SHORT,101.85,102.95,99.50,98.75,4H bearish FVG 101.08-102.64 + 1H bearish FVG 101.74-102.02,10:30,open,,Buy-side swept at 104.99 then BOS; price 100.88 at post time (limit entry)
+2026-11-02,USOIL,1H,SHORT,101.85,102.95,99.50,98.75,4H bearish FVG 101.08-102.64 + 1H bearish FVG 101.74-102.02,10:30,expired,0,"Buy-side swept at 104.99 then BOS; price 100.88 at post time (limit entry); CANCELLED/no fill: highs after posting topped at 101.07 (entry 101.85 never touched) and price fell through TP1 99.50 to 99.26 by 11-02 11:00 UTC, so the setup is void; no trade, 0R"
+2026-11-02,ETHUSDT,1H,LONG,2267,2244,2317,2337,1H bullish OB 2247.84-2265.17 + FVG 2265.17-2268.47,17:45,open,,Sell-side swept 2247.84 (equal lows 2254) then BOS above 2278; price 2285 at post time (limit entry)
