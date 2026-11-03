@@ -1,11 +1,116 @@
 [
- {"when":"2026-11-07 12:30","file":"24_ur_sweep.mp4","lang":"ur","platform":"tiktok"},
- {"when":"2026-11-07 17:30","file":"25_en_stop.mp4","lang":"en","platform":"tiktok"},
- {"when":"2026-11-07 21:00","file":"26_ur_risk.mp4","lang":"ur","platform":"tiktok"},
- {"when":"2026-11-08 12:30","file":"27_en_trend.mp4","lang":"en","platform":"tiktok"},
- {"when":"2026-11-08 17:30","file":"28_ur_orderblock.mp4","lang":"ur","platform":"tiktok"},
- {"when":"2026-11-08 21:00","file":"29_en_topdown.mp4","lang":"en","platform":"tiktok"},
- {"when":"2026-11-09 12:30","file":"30_ur_blowup.mp4","lang":"ur","platform":"tiktok"},
- {"when":"2026-11-09 17:30","file":"31_en_restart.mp4","lang":"en","platform":"tiktok"},
- {"when":"2026-11-09 21:00","file":"32_ur_killzones.mp4","lang":"ur","platform":"tiktok"}
+ {
+  "when": "2026-11-04 10:00",
+  "file": "signal_nov4_ur.mp4",
+  "lang": "ur",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-07 12:30",
+  "file": "24_ur_sweep.mp4",
+  "lang": "ur",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-07 15:00",
+  "file": "33_ur_joke_sl.mp4",
+  "lang": "ur",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-07 17:30",
+  "file": "25_en_stop.mp4",
+  "lang": "en",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-07 19:30",
+  "file": "34_en_mot_lose.mp4",
+  "lang": "en",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-07 21:00",
+  "file": "26_ur_risk.mp4",
+  "lang": "ur",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-07 22:30",
+  "file": "35_ur_long_smc.mp4",
+  "lang": "ur",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-08 12:30",
+  "file": "27_en_trend.mp4",
+  "lang": "en",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-08 15:00",
+  "file": "36_en_joke_analysis.mp4",
+  "lang": "en",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-08 17:30",
+  "file": "28_ur_orderblock.mp4",
+  "lang": "ur",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-08 19:30",
+  "file": "37_ur_mot_sabr.mp4",
+  "lang": "ur",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-08 21:00",
+  "file": "29_en_topdown.mp4",
+  "lang": "en",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-08 22:30",
+  "file": "38_en_long_psych.mp4",
+  "lang": "en",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-09 12:30",
+  "file": "30_ur_blowup.mp4",
+  "lang": "ur",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-09 15:00",
+  "file": "39_ur_joke_hold.mp4",
+  "lang": "ur",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-09 17:30",
+  "file": "31_en_restart.mp4",
+  "lang": "en",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-09 19:30",
+  "file": "40_en_mot_1pct.mp4",
+  "lang": "en",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-09 21:00",
+  "file": "32_ur_killzones.mp4",
+  "lang": "ur",
+  "platform": "tiktok"
+ },
+ {
+  "when": "2026-11-09 22:30",
+  "file": "41_ur_long_risk.mp4",
+  "lang": "ur",
+  "platform": "tiktok"
+ }
 ]
